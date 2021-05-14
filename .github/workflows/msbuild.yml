@@ -33,4 +33,4 @@ jobs:
       
     - name: MSTest
       shell: powershell
-      run: '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /testcontainer:WebApplication1.Tests\bin\debug\WebApplication1.Tests.dll /resultsfile:TestResults.trx'
+      run: '& "$(vswhere -property installationPath)\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" WebApplication1.Tests\bin\debug\WebApplication1.Tests.dll'
