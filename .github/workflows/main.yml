@@ -13,7 +13,15 @@ jobs:
     
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
-
+      
+    - name: MSBuild
+      working-directory: WebApplication1
+      run: msbuild WebApplication1.csproj
+      
+    - name: MSBuildTest
+      working-directory: WebApplication1.Tests
+      run: msbuild WebApplication1.Tests.csproj
+      
     - name: MSTest
       shell: powershell
       run: '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /testcontainer:WebApplication1.Tests /resultsfile:TestResults.trx'
