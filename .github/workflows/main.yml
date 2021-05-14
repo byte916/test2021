@@ -8,5 +8,12 @@ jobs:
     name: Unit Testing
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - run: dotnet test
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: MSTest
+      shell: powershell
+      run: '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /testcontainer:Test.dll /resultsfile:TestResults.trx'
