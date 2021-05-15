@@ -23,7 +23,7 @@ jobs:
 
 
     - name: Add NUnit
-      uses:  nunit/nunit-console @v3.12
+      uses:  nunit/nunit-console@v3.12
       
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
