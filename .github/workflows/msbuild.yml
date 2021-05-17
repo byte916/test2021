@@ -1,4 +1,4 @@
-name: MSBuild
+name: Run Tests
 
 on: [push]
 
@@ -17,13 +17,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
-
-
-    - name: Add NUnit
-      uses:  nunit/nunit-console@v3.12
+    
+    - uses: actions/cache@v2  
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
       
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
