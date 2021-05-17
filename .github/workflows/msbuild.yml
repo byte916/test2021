@@ -17,15 +17,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
     
     - uses: actions/cache@v2  
       with:
-        path: ~/.nuget/packages
+        path: ~/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
+      
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
       
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
